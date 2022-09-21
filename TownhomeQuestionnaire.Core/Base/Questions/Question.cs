@@ -1,4 +1,7 @@
-﻿namespace TownhomeQuestionnaire.Core.Models;
+﻿using FluentValidation;
+using FluentValidation.Results;
+
+namespace TownhomeQuestionnaire.Core.Models;
 
 public abstract class Question
 {
@@ -15,4 +18,10 @@ public abstract class Question
     public abstract string Instruction { get; init; }
     public abstract string QuestionType { get; set; }
     public abstract IReadOnlyCollection<Question> ChildQuestions { get; set; }
+    public abstract QuestionnaireAnswer Answer { get; set; }
+    public abstract AbstractValidator<Question> Validator { get; init; }
+    public virtual ValidationResult ValidateAnswer()
+    {
+        return Validator.Validate(this);
+    }
 }
