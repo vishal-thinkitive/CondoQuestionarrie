@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TownhomeQuestionnaire.Core", "TownhomeQuestionnaire.Core\TownhomeQuestionnaire.Core.csproj", "{797E90FC-78BA-4C64-9048-BE7EFC9FEF19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TownhomeQuestionnaire.Migration", "TownhomeQuestionnaire.Migration\TownhomeQuestionnaire.Migration.csproj", "{17414F03-1EEC-4CCB-B2EA-27420C944AF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{797E90FC-78BA-4C64-9048-BE7EFC9FEF19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{797E90FC-78BA-4C64-9048-BE7EFC9FEF19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{797E90FC-78BA-4C64-9048-BE7EFC9FEF19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{797E90FC-78BA-4C64-9048-BE7EFC9FEF19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
