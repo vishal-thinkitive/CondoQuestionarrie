@@ -15,5 +15,5 @@ public class QuestionProjectLegalName : Question
     public override string QuestionType { get; set; } = TypeText;
     public override IReadOnlyCollection<Question> ChildQuestions { get; set; } = new List<Question>().AsReadOnly();
     public override QuestionnaireAnswer Answer { get; set; }
-    public override AbstractValidator<Question> Validator { get; init; }
+    public override IValidator<Question> Validator { get; init; }
 }

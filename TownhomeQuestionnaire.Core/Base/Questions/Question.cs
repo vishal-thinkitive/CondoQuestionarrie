@@ -19,7 +19,7 @@ public abstract class Question
     public abstract string QuestionType { get; set; }
     public abstract IReadOnlyCollection<Question> ChildQuestions { get; set; }
     public abstract QuestionnaireAnswer Answer { get; set; }
-    public abstract AbstractValidator<Question> Validator { get; init; }
+    public abstract IValidator<Question> Validator { get; init; }
     public virtual ValidationResult ValidateAnswer()
     {
         return Validator.Validate(this);

@@ -4,6 +4,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TownhomeQuestionnaire.Core"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TownhomeQuestionnaire.Migration", "TownhomeQuestionnaire.Migration\TownhomeQuestionnaire.Migration.csproj", "{17414F03-1EEC-4CCB-B2EA-27420C944AF6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-compose", "docker-compose", "{14E18B93-213E-47C6-856C-4B269BB9570B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{52CF9646-234B-4AD3-9E4B-1EA664BA365A}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose\redis\Dockerfile = docker-compose\redis\Dockerfile
+		docker-compose\redis\redis.conf = docker-compose\redis\redis.conf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{6A081793-CEA3-4C45-8F2E-AF982496AB60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "elastic-search", "elastic-search", "{D0E9FA31-BFEA-472B-9332-DB21CF7C56BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{81BC10F4-4D27-4E4F-8642-A9A89B3DD373}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pgAdmin", "pgAdmin", "{690AD691-8790-4E50-A151-37D90FAF7244}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "postgres", "postgres", "{6F232A70-304C-459B-AA96-BEEEE6AEE991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +36,12 @@ Global
 		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17414F03-1EEC-4CCB-B2EA-27420C944AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{52CF9646-234B-4AD3-9E4B-1EA664BA365A} = {14E18B93-213E-47C6-856C-4B269BB9570B}
+		{D0E9FA31-BFEA-472B-9332-DB21CF7C56BE} = {6A081793-CEA3-4C45-8F2E-AF982496AB60}
+		{81BC10F4-4D27-4E4F-8642-A9A89B3DD373} = {D0E9FA31-BFEA-472B-9332-DB21CF7C56BE}
+		{690AD691-8790-4E50-A151-37D90FAF7244} = {6A081793-CEA3-4C45-8F2E-AF982496AB60}
+		{6F232A70-304C-459B-AA96-BEEEE6AEE991} = {6A081793-CEA3-4C45-8F2E-AF982496AB60}
 	EndGlobalSection
 EndGlobal
