@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TownhomeQuestionnaire.Core\TownhomeQuestionnaire.Core.csproj" />
+      <ProjectReference Include="..\CondoQuestionnaire.Core\CondoQuestionnaire.Core.csproj" />
     </ItemGroup>
 
 </Project>

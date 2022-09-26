@@ -1,6 +1,6 @@
-﻿namespace TownhomeQuestionnaire.Core.Models;
+namespace CondoQuestionnaire.Core.Models;
 
-public abstract class BaseModel
+public interface IEntity
 {
     public Guid? Id { get; set; }
     public DateTime CreatedAtUtc { get; set; }

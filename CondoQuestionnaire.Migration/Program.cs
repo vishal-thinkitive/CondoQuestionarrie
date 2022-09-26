@@ -1,8 +1,8 @@
-﻿using FluentMigrator.Runner;
+﻿using CondoQuestionnaire.Migration.Migrations;
+using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
-using TownhomeQuestionnaire.Migration.Migrations;
 
-namespace TownhomeQuestionnaire.Migration;
+namespace CondoQuestionnaire.Migration;
 
 internal static class Program
 {
@@ -30,7 +30,7 @@ internal static class Program
                 // Set the connection string
                 .WithGlobalConnectionString("Data Source=test.db")
                 // Define the assembly containing the migrations
-                .ScanIn(typeof(AddUserTable).Assembly).For.Migrations())
+                .ScanIn(typeof(InitalMigration).Assembly).For.Migrations())
             // Enable logging to console in the FluentMigrator way
             .AddLogging(lb => lb.AddFluentMigratorConsole())
             // Build the service provider
