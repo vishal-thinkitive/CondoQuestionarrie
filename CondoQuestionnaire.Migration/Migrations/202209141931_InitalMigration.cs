@@ -1,5 +1,6 @@
 ﻿using FluentMigrator;
 using CondoQuestionnaire.Core.Models;
+using CondoQuestionnaire.Core.Utils.Entity;
 
 namespace CondoQuestionnaire.Migration.Migrations;
 
@@ -7,7 +8,7 @@ namespace CondoQuestionnaire.Migration.Migrations;
 public class InitalMigration : FluentMigrator.Migration {
     public override void Up()
             {
-                Create.Table("Users")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(UserModel)))
                     .WithColumn(nameof(UserModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(UserModel.Name)).AsString()
                     .WithColumn(nameof(UserModel.Email)).AsString()
@@ -19,7 +20,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(UserModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("Contacts")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactModel)))
                     .WithColumn(nameof(ContactModel.Id)).AsGuid().PrimaryKey().Identity()
                     .WithColumn(nameof(ContactModel.Name)).AsString()
                     .WithColumn(nameof(ContactModel.DefaultMethodId)).AsGuid().Nullable()
@@ -28,7 +29,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(ContactModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("ContactMethods")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactMethodModel)))
                     .WithColumn(nameof(ContactMethodModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(ContactMethodModel.Label)).AsString()
                     .WithColumn(nameof(ContactMethodModel.ContactId)).AsGuid()
@@ -40,7 +41,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(ContactMethodModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("Addresses")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(AddressModel)))
                     .WithColumn(nameof(AddressModel.Id)).AsGuid().PrimaryKey().Identity()
                     .WithColumn(nameof(AddressModel.Name)).AsString().Nullable()
                     .WithColumn(nameof(AddressModel.Line1)).AsString().Nullable()
@@ -56,7 +57,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(AddressModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("CondoProperties")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(CondoPropertyModel)))
                     .WithColumn(nameof(CondoPropertyModel.Id)).AsGuid().PrimaryKey().Identity()
                     .WithColumn(nameof(CondoPropertyModel.Name)).AsString()
                     .WithColumn(nameof(CondoPropertyModel.Type)).AsString().Indexed("idx_CondoProperties_Type")
@@ -70,7 +71,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(CondoPropertyModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("PropertyManagementCompanies")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(PropertyManagementCompanyModel)))
                     .WithColumn(nameof(PropertyManagementCompanyModel.Id)).AsGuid().PrimaryKey().Identity()
                     .WithColumn(nameof(PropertyManagementCompanyModel.Name)).AsString()
                     .WithColumn(nameof(PropertyManagementCompanyModel.Dba)).AsString().Nullable()
@@ -79,7 +80,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(PropertyManagementCompanyModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
 
-                Create.Table("PropertyManagerProfiles")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(PropertyManagerProfileModel)))
                     .WithColumn(nameof(PropertyManagerProfileModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(PropertyManagerProfileModel.Name)).AsString()
                     .WithColumn(nameof(PropertyManagerProfileModel.FirstName)).AsString()
@@ -95,7 +96,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(PropertyManagerProfileModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("ApplicantProfiles")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ApplicantProfileModel)))
                     .WithColumn(nameof(ApplicantProfileModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(ApplicantProfileModel.Name)).AsString()
                     .WithColumn(nameof(ApplicantProfileModel.FirstName)).AsString()
@@ -109,7 +110,7 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(ApplicantProfileModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
                 
-                Create.Table("CondoApplications")
+                Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(CondoApplicationModel)))
                     .WithColumn(nameof(CondoApplicationModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(CondoApplicationModel.Status)).AsString().Indexed("idx_CondoApplications_Status")
                     .WithColumn(nameof(CondoApplicationModel.CurrentQuestionCode)).AsString().Indexed("idx_CondoApplications_CurrentQuestionCode")
@@ -124,14 +125,14 @@ public class InitalMigration : FluentMigrator.Migration {
     
             public override void Down()
             {
-                Delete.Table("CondoApplications");
-                Delete.Table("ApplicantProfiles");
-                Delete.Table("PropertyManagerProfiles");
-                Delete.Table("PropertyManagementCompanies");
-                Delete.Table("CondoProperties");
-                Delete.Table("Addresses");
-                Delete.Table("ContactMethods");
-                Delete.Table("Contacts");
-                Delete.Table("Users");
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(CondoApplicationModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ApplicantProfileModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(PropertyManagerProfileModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(PropertyManagementCompanyModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(CondoPropertyModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(AddressModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactMethodModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactModel)));
+                Delete.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(UserModel)));
             }
 }
