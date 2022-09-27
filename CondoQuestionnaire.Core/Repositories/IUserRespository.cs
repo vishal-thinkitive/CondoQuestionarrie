@@ -1,5 +1,6 @@
 using CondoQuestionnaire.Core.Includes;
 using CondoQuestionnaire.Core.Models;
+using CondoQuestionnaire.Shared.Models;
 
 namespace CondoQuestionnaire.Core.Repositories;
 

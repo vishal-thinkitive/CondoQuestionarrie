@@ -1,4 +1,4 @@
-namespace CondoQuestionnaire.Core.Models;
+namespace CondoQuestionnaire.Shared.Models;
 
 public class EntityId: ICloneable
 {

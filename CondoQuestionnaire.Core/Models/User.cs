@@ -1,4 +1,6 @@
-﻿namespace CondoQuestionnaire.Core.Models;
+﻿using CondoQuestionnaire.Shared.Models;
+
+namespace CondoQuestionnaire.Core.Models;
 
 public sealed class UserModel: IEntity
 {

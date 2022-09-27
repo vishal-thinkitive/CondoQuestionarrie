@@ -1,3 +1,5 @@
+using CondoQuestionnaire.Shared.Models;
+
 namespace CondoQuestionnaire.Core.Models;
 
 public interface IEntity
