@@ -3,7 +3,9 @@
 public class ContactMethod
 {
     public Guid? ContactId;
-    public string? Type { get; set; }
-    public string? ReferenceValue { get; set; }
+    public string Label { get; init; }
+    public string Type { get; init; }
+    public string ReferenceValue { get; init; }
+    
     public Contact? Contact { get; set; }
 }

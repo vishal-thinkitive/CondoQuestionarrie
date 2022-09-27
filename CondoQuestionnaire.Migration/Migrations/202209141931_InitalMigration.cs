@@ -30,7 +30,8 @@ public class InitalMigration : FluentMigrator.Migration {
                 
                 Create.Table("ContactMethods")
                     .WithColumn(nameof(ContactMethodModel.Id)).AsGuid().PrimaryKey()
-                    .WithColumn(nameof(ContactMethodModel.ContactId)).AsGuid().Nullable()
+                    .WithColumn(nameof(ContactMethodModel.Label)).AsString()
+                    .WithColumn(nameof(ContactMethodModel.ContactId)).AsGuid()
                         .ForeignKey("fk_Contacts_ContactMethods", "Contacts", nameof(ContactModel.Id))
                     .WithColumn(nameof(ContactMethodModel.Type)).AsString()
                     .WithColumn(nameof(ContactMethodModel.ReferenceValue)).AsString()
