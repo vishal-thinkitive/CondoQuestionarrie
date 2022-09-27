@@ -6,12 +6,12 @@ namespace CondoQuestionnaire.Core.Repositories;
 
 public interface IPropertyManagerRepository
 {
-    public Task<PropertyManagerProfileModel> FindById(EntityId id, IncludeDescription<PropertyManagerProfile> description);
-    public Task<PropertyManagerProfileModel> FindByEmailOrPhone(string emailOrPhone, IncludeDescription<PropertyManagerProfile> description);
-    public Task<PropertyManagerProfileModel> FindByApplication(CondoApplication application, IncludeDescription<PropertyManagerProfile> description);
-    public Task<IEnumerable<PropertyManagerProfileModel>> FindManyByProperty(CondoProperty property, IncludeDescription<PropertyManagerProfile> description);
-    public Task<PropertyManagerProfileModel> Create(PropertyManagerProfile property);
-    public Task<PropertyManagerProfileModel> Update(PropertyManagerProfile property);
-    public Task DeleteById(EntityId id, bool softDelete = true);
-    public Task Delete(PropertyManagerProfile property, bool softDelete = true);
+    public Task<PropertyManagerProfileModel> FindByIdAsync(EntityId id, IncludeDescription<PropertyManagerProfile> description, CancellationToken cancellationToken);
+    public Task<PropertyManagerProfileModel> FindByEmailOrPhoneAsync(string emailOrPhone, IncludeDescription<PropertyManagerProfile> description, CancellationToken cancellationToken);
+    public Task<PropertyManagerProfileModel> FindByApplicationAsync(CondoApplication application, IncludeDescription<PropertyManagerProfile> description, CancellationToken cancellationToken);
+    public Task<IEnumerable<PropertyManagerProfileModel>> FindManyByPropertyAsync(CondoProperty property, IncludeDescription<PropertyManagerProfile> description, CancellationToken cancellationToken);
+    public Task<PropertyManagerProfileModel> CreateAsync(PropertyManagerProfile property, CancellationToken cancellationToken);
+    public Task<PropertyManagerProfileModel> UpdateAsync(PropertyManagerProfile property, CancellationToken cancellationToken);
+    public Task DeleteByIdAsync(EntityId id, CancellationToken cancellationToken, bool softDelete = true);
+    public Task DeleteAsync(PropertyManagerProfile property, CancellationToken cancellationToken, bool softDelete = true);
 }

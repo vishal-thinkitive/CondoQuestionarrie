@@ -6,10 +6,10 @@ namespace CondoQuestionnaire.Core.Repositories;
 
 public interface IContactRepository
 {
-    public Task<ContactModel> FindById(EntityId id, IncludeDescription<Contact> description);
-    public Task<ContactModel> Create(Contact address);
-    public Task<ContactModel> AddContactMethod(Contact address, ContactMethod method);
-    public Task<ContactModel> Update(Contact address);
-    public Task DeleteById(EntityId id, bool softDelete = true);
-    public Task Delete(Contact contact, bool softDelete = true);
+    public Task<ContactModel> FindByIdAsync(EntityId id, IncludeDescription<Contact> description, CancellationToken cancellationToken);
+    public Task<ContactModel> CreateAsync(Contact address, CancellationToken cancellationToken);
+    public Task<ContactModel> AddContactMethodAsync(Contact address, ContactMethod method, CancellationToken cancellationToken);
+    public Task<ContactModel> UpdateAsync(Contact address, CancellationToken cancellationToken);
+    public Task DeleteByIdAsync(EntityId id, CancellationToken cancellationToken, bool softDelete = true);
+    public Task DeleteAsync(Contact contact, CancellationToken cancellationToken, bool softDelete = true);
 }

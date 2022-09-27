@@ -6,13 +6,21 @@ namespace CondoQuestionnaire.Core.Repositories;
 
 public interface ICondoApplicationRepository
 {
-    public Task<CondoApplicationModel> FindById(EntityId id, IncludeDescription<CondoApplication> description);
-    public Task<ApplicantProfileModel> FindByEmailOrPhone(string emailOrPhone, IncludeDescription<CondoApplication> description);
-    public Task<ApplicantProfileModel> FindByApplication(CondoApplication application, IncludeDescription<CondoApplication> description);
-    public Task<IEnumerable<ApplicantProfileModel>> FindManyByProperty(ApplicantProfile applicant, IncludeDescription<CondoApplication> description);
-    public Task<IEnumerable<ApplicantProfileModel>> FindManyByPropertyManager(PropertyManagerProfile manager, IncludeDescription<CondoApplication> description);
-    public Task<ApplicantProfileModel> Create(CondoApplication application);
-    public Task<ApplicantProfileModel> Update(CondoApplication application);
-    public Task DeleteById(EntityId id, bool softDelete = true);
-    public Task Delete(CondoApplication application, bool softDelete = true);
+    public Task<CondoApplicationModel> FindByIdAsync(EntityId id, IncludeDescription<CondoApplication> description, CancellationToken cancellationToken);
+    
+    public Task<ApplicantProfileModel> FindByEmailOrPhoneAsync(string emailOrPhone, IncludeDescription<CondoApplication> description, CancellationToken cancellationToken);
+    
+    public Task<ApplicantProfileModel> FindByApplicationAsync(CondoApplication application, IncludeDescription<CondoApplication> description, CancellationToken cancellationToken);
+    
+    public Task<IEnumerable<ApplicantProfileModel>> FindManyByPropertyAsync(ApplicantProfile applicant, IncludeDescription<CondoApplication> description, CancellationToken cancellationToken);
+    
+    public Task<IEnumerable<ApplicantProfileModel>> FindManyByPropertyManagerAsync(PropertyManagerProfile manager, IncludeDescription<CondoApplication> description, CancellationToken cancellationToken);
+    
+    public Task<ApplicantProfileModel> CreateAsync(CondoApplication application, CancellationToken cancellationToken);
+    
+    public Task<ApplicantProfileModel> UpdateAsync(CondoApplication application, CancellationToken cancellationToken);
+    
+    public Task DeleteByIdAsync(EntityId id, CancellationToken cancellationToken, bool softDelete = true);
+    
+    public Task DeleteAsync(CondoApplication application, CancellationToken cancellationToken, bool softDelete = true);
 }

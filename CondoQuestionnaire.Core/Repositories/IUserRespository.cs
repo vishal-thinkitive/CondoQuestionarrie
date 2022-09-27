@@ -6,10 +6,10 @@ namespace CondoQuestionnaire.Core.Repositories;
 
 public interface IUserRepository
 {
-    public Task<UserModel> FindById(EntityId id, IncludeDescription<UserModel> description);
-    public Task<UserModel> FindByEmailOrPhone(string emailOrPhone, IncludeDescription<UserModel> description);
-    public Task<UserModel> Create(UserModel user);
-    public Task<UserModel> Update(UserModel user);
-    public Task DeleteById(EntityId id, bool softDelete = true);
-    public Task Delete(UserModel user, bool softDelete = true);
+    public Task<UserModel> FindByIdAsync(EntityId id, IncludeDescription<UserModel> description, CancellationToken cancellationToken);
+    public Task<UserModel> FindByEmailOrPhoneAsync(string emailOrPhone, IncludeDescription<UserModel> description, CancellationToken cancellationToken);
+    public Task<UserModel> CreateAsync(UserModel user, CancellationToken cancellationToken);
+    public Task<UserModel> UpdateAsync(UserModel user, CancellationToken cancellationToken);
+    public Task DeleteByIdAsync(EntityId id, CancellationToken cancellationToken, bool softDelete = true);
+    public Task DeleteAsync(UserModel user, CancellationToken cancellationToken, bool softDelete = true);
 }

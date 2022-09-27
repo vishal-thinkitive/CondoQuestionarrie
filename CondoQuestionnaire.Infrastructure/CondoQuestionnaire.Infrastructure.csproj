@@ -6,4 +6,13 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CondoQuestionnaire.Core\CondoQuestionnaire.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SqlKata" Version="2.4.0" />
+      <PackageReference Include="SqlKata.Execution" Version="2.4.0" />
+    </ItemGroup>
+
 </Project>
