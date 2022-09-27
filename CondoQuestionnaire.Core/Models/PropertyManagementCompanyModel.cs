@@ -4,7 +4,7 @@ namespace CondoQuestionnaire.Core.Models;
 
 public sealed class PropertyManagementCompanyModel: PropertyManagementCompany, IEntity
 {
-    public Guid? Id { get; set; }
+    public EntityId? Id { get; set; }
     public DateTime CreatedAtUtc { get; set; }
     public DateTime UpdatedAtUtc { get; set; }
     public DateTime? DeletedAtUtc { get; set; }

@@ -4,7 +4,7 @@ namespace CondoQuestionnaire.Core.Models;
 
 public sealed class ApplicantProfileModel : ApplicantProfile, IEntity
 {
-    public Guid? Id { get; set; }
+    public EntityId? Id { get; set; }
     public Guid? UserId { get; set; }
     public UserModel? User { get; set; }
     public DateTime CreatedAtUtc { get; set; }

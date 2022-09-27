@@ -4,7 +4,7 @@ namespace CondoQuestionnaire.Core.Models;
 
 public sealed class ContactModel : Contact, IEntity
 {
-    public Guid? Id { get; set; }
+    public EntityId? Id { get; set; }
     public new ContactMethodModel? DefaultMethod { get; set; }
     public new IEnumerable<ContactMethodModel> ContactMethods { get; set; } = Enumerable.Empty<ContactMethodModel>();
     public DateTime CreatedAtUtc { get; set; }
