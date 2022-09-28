@@ -40,6 +40,7 @@ public class QuestionType : IEquatable<QuestionType>
     }
 
     public static QuestionType String => new QuestionType(nameof(String));
+    public static QuestionType Text => new QuestionType(nameof(Text));
     public static QuestionType Boolean => new QuestionType(nameof(Boolean));
     public static QuestionType Date => new QuestionType(nameof(Date));
     public static QuestionType Number => new QuestionType(nameof(Number));
