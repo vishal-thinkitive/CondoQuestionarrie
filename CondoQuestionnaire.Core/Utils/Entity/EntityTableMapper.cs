@@ -2,7 +2,7 @@ using CondoQuestionnaire.Core.Models;
 
 namespace CondoQuestionnaire.Core.Utils.Entity;
 
-public class EntityToTableNameMapper
+public static class EntityToTableNameMapper
 {
     private static readonly Dictionary<Type, string> TypesToTables = new Dictionary<Type, string>
     {
