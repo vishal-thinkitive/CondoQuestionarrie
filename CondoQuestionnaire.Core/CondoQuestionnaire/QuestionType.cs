@@ -43,6 +43,7 @@ public class QuestionType : IEquatable<QuestionType>
     public static QuestionType Text => new QuestionType(nameof(Text));
     public static QuestionType Boolean => new QuestionType(nameof(Boolean));
     public static QuestionType Date => new QuestionType(nameof(Date));
+    public static QuestionType YearOnly => new QuestionType(nameof(YearOnly));
     public static QuestionType Number => new QuestionType(nameof(Number));
     public static QuestionType PhoneNumber => new QuestionType(nameof(PhoneNumber));
     public static QuestionType Address => new QuestionType(nameof(Address));
