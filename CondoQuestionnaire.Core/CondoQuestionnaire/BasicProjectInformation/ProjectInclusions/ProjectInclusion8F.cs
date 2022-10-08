@@ -8,4 +8,5 @@ public class ProjectInclusion8F : IQuestionOption
         "Supportive or continuing care for seniors or for residents with disabilities";
 
     public string Code => "G1:Q8:8F";
+    public IEnumerable<IQuestion> AttachedQuestions => Enumerable.Empty<IQuestion>();
 }

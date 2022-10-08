@@ -6,4 +6,5 @@ public interface IQuestionOption
     string Label { get; }
     string Code { get; }
     string ParentCode => Code.Split(':')[-2];
+    IEnumerable<IQuestion> AttachedQuestions { get; }
 }

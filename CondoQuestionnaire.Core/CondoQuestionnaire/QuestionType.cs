@@ -48,4 +48,5 @@ public class QuestionType : IEquatable<QuestionType>
     public static QuestionType Address => new QuestionType(nameof(Address));
     public static QuestionType Email => new QuestionType(nameof(Email));
     public static QuestionType MultiSelect => new QuestionType(nameof(MultiSelect));
+    public static QuestionType BooleanWithDateOption => new QuestionType(nameof(BooleanWithDateOption));
 }

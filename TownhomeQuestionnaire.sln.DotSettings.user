@@ -1,11 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3f8715d3_002D8031_002D4c43_002Db1d6_002Da21c9621355b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestIfExpectPropertiesAreIncluded" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::ED97426C-5B6D-469E-B204-6D7C7AF7B2C5::net6.0::CondoQuestionnaire.Tests.Core.Includes.IncludeDescriptionTests&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3f8715d3_002D8031_002D4c43_002Db1d6_002Da21c9621355b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestIfExpectPropertiesAreIncluded" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::ED97426C-5B6D-469E-B204-6D7C7AF7B2C5::net6.0::CondoQuestionnaire.Tests.Core.Includes.IncludeDescriptionTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8bfb2902_002D9813_002D4298_002Da324_002Da44050d0b38f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestIfExpectPropertiesAreIncluded #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;NUnit3x::ED97426C-5B6D-469E-B204-6D7C7AF7B2C5::net6.0::CondoQuestionnaire.Tests.Core.Includes.IncludeDescriptionTests.TestIfExpectPropertiesAreIncluded&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8bfb2902_002D9813_002D4298_002Da324_002Da44050d0b38f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestIfExpectPropertiesAreIncluded #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::ED97426C-5B6D-469E-B204-6D7C7AF7B2C5::net6.0::CondoQuestionnaire.Tests.Core.Includes.IncludeDescriptionTests.TestIfExpectPropertiesAreIncluded&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

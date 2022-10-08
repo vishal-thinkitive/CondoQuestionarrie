@@ -8,4 +8,5 @@ public class ProjectInclusion8A : IQuestionOption
         "Hotel/motel/resort activities, mandatory or voluntary rental-pooling arrangements, or other restrictions on the unit owner's ability to occupy the unit";
 
     public string Code => "G1:Q8:8A";
+    public IEnumerable<IQuestion> AttachedQuestions => Enumerable.Empty<IQuestion>();
 }

@@ -8,4 +8,5 @@ public class ProjectInclusion8Additional : IQuestionOption
         "Provide additional detail here, if applicable (optional)";
 
     public string Code => "G1:Q8:Additional";
+    public IEnumerable<IQuestion> AttachedQuestions => Enumerable.Empty<IQuestion>();
 }

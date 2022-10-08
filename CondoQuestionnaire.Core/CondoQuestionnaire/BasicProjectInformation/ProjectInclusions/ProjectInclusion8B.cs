@@ -8,4 +8,5 @@ public class ProjectInclusion8B : IQuestionOption
         "Deed or resale restrictions";
 
     public string Code => "G1:Q8:8B";
+    public IEnumerable<IQuestion> AttachedQuestions => Enumerable.Empty<IQuestion>();
 }

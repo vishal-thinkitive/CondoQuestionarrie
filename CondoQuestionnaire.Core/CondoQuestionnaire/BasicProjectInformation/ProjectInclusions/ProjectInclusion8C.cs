@@ -8,4 +8,5 @@ public class ProjectInclusion8C : IQuestionOption
         "Manufactured homes";
 
     public string Code => "G1:Q8:8C";
+    public IEnumerable<IQuestion> AttachedQuestions => Enumerable.Empty<IQuestion>();
 }

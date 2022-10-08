@@ -8,4 +8,5 @@ public class ProjectInclusion8D : IQuestionOption
         "Mandatory fee-based membership for use of project amenities or services";
 
     public string Code => "G1:Q8:8D";
+    public IEnumerable<IQuestion> AttachedQuestions => Enumerable.Empty<IQuestion>();
 }
