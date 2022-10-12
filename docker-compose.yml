@@ -20,13 +20,13 @@ services:
   
   condo-questionnaire-api.migration:
     build:
-      context: ./CondoQuestionnaire.Migration
-      dockerfile: Dockerfile
-    image: condo-questionnaire-api/migration
+      context: .
+      dockerfile: ./CondoQuestionnaire.Migration/Dockerfile
+#    image: condo-questionnaire-api/migration
     extra_hosts:
       - 'host.docker.internal:host-gateway'  
     volumes:
-      - './TownhomeQuestionnaire.API:/var/www/html:delegated'
+      - './data/dotnetApps/Api:/app:delegated'
     networks:
       - condo-questionnaire-app
     depends_on:
@@ -73,7 +73,7 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=SuperSecret
       - PGADMIN_DEFAULT_EMAIL=dev@mail.com
     ports:
-      - "5050:80"
+      - "5055:80"
     volumes:
       - ${APP_DATA_PATH:-.}/data/pgAdmin:/var/lib/pgadmin
     networks:
@@ -85,7 +85,7 @@ services:
     volumes:
       - ${APP_DATA_PATH:-.}/data/postgres:/var/lib/postgresql/data
     ports:
-      - "${POSTGRES_PORT-5432}:5432"
+      - "${POSTGRES_PORT-5435}:5432"
     environment:
       - POSTGRES_DB=${POSTGRES_DB:-postgres}
       - POSTGRES_USER=${POSTGRES_USER:-default}

@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace CondoQuestionnaire.Migration;
 
-internal static class Program
+class Program
 {
-    private static void Main(string[] args)
+    static void Main(string[] args)
     {
         
         var serviceProvider = CreateServices();
@@ -23,8 +23,8 @@ internal static class Program
     {
         var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
         var builder = new ConfigurationBuilder()
-            .SetBasePath(Environment.CurrentDirectory)
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
             .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
             .AddEnvironmentVariables();
         
@@ -37,8 +37,10 @@ internal static class Program
     private static IServiceProvider CreateServices()
     {
         var configuration = BuildConfiguration();
+        
         var applicationSettings =
-            configuration.GetValue<MigrationApplicationSettings>(nameof(MigrationApplicationSettings));
+            configuration.GetSection(nameof(MigrationApplicationSettings))
+                .Get<MigrationApplicationSettings>();
         
         return new ServiceCollection()
             .AddFluentMigratorCore()

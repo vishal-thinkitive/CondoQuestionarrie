@@ -12,10 +12,17 @@
       <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
       <PackageReference Include="FluentMigrator.Runner.Postgres" Version="3.3.2" />
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+      <PackageReference Include="Npgsql" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\CondoQuestionnaire.Core\CondoQuestionnaire.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -37,7 +37,7 @@ public class PostgresConnection
 
     public override string ToString()
     {
-        return $"postgresql://{DbUser}:{DbPassword}@{DbHost}:{DbPort}/{DbName}?sslmode={SslMode}";
+        return $"Username={DbUser};Password={DbPassword};Host={DbHost};Port={DbPort};Database={DbName};Include Error Detail=true;";
     }
 }
 

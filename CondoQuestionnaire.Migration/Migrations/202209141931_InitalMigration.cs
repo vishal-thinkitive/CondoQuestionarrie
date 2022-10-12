@@ -19,9 +19,8 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(UserModel.UpdatedAtUtc)).AsDateTime()
                     .WithColumn(nameof(UserModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
-                
                 Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactModel)))
-                    .WithColumn(nameof(ContactModel.Id)).AsGuid().PrimaryKey().Identity()
+                    .WithColumn(nameof(ContactModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(ContactModel.Name)).AsString()
                     .WithColumn(nameof(ContactModel.DefaultMethodId)).AsGuid().Nullable()
                     .WithColumn(nameof(ContactModel.CreatedAtUtc)).AsDateTime()
@@ -33,16 +32,20 @@ public class InitalMigration : FluentMigrator.Migration {
                     .WithColumn(nameof(ContactMethodModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(ContactMethodModel.Label)).AsString()
                     .WithColumn(nameof(ContactMethodModel.ContactId)).AsGuid()
-                        .ForeignKey("fk_Contacts_ContactMethods", "Contacts", nameof(ContactModel.Id))
                     .WithColumn(nameof(ContactMethodModel.Type)).AsString()
                     .WithColumn(nameof(ContactMethodModel.ReferenceValue)).AsString()
                     .WithColumn(nameof(ContactMethodModel.CreatedAtUtc)).AsDateTime()
                     .WithColumn(nameof(ContactMethodModel.UpdatedAtUtc)).AsDateTime()
                     .WithColumn(nameof(ContactMethodModel.DeletedAtUtc)).AsDateTime().Nullable();
                 
+                Create.ForeignKey("fk_Contacts_ContactMethods")
+                    .FromTable(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactMethodModel)))
+                    .ForeignColumn(nameof(ContactMethodModel.ContactId))
+                    .ToTable(EntityToTableNameMapper.GetTableForEntityType(typeof(ContactModel)))
+                    .PrimaryColumn(nameof(ContactModel.Id));
                 
                 Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(AddressModel)))
-                    .WithColumn(nameof(AddressModel.Id)).AsGuid().PrimaryKey().Identity()
+                    .WithColumn(nameof(AddressModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(AddressModel.Name)).AsString().Nullable()
                     .WithColumn(nameof(AddressModel.Line1)).AsString().Nullable()
                     .WithColumn(nameof(AddressModel.Line2)).AsString()
@@ -58,13 +61,13 @@ public class InitalMigration : FluentMigrator.Migration {
                 
                 
                 Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(CondoPropertyModel)))
-                    .WithColumn(nameof(CondoPropertyModel.Id)).AsGuid().PrimaryKey().Identity()
+                    .WithColumn(nameof(CondoPropertyModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(CondoPropertyModel.Name)).AsString()
                     .WithColumn(nameof(CondoPropertyModel.Type)).AsString().Indexed("idx_CondoProperties_Type")
                     .WithColumn(nameof(CondoPropertyModel.Status)).AsString().Indexed("idx_CondoProperties_Status")
                     .WithColumn(nameof(CondoPropertyModel.Source)).AsString().Indexed("idx_CondoProperties_Source")
                     .WithColumn(nameof(CondoPropertyModel.SourceRef)).AsString().Nullable()
-                    .WithColumn(nameof(CondoPropertyModel.AddressId)).AsString().Nullable()
+                    .WithColumn(nameof(CondoPropertyModel.AddressId)).AsGuid().Nullable()
                     .ForeignKey("fk_Addresses_CondoProperties", "Addresses", nameof(AddressModel.Id))
                     .WithColumn(nameof(CondoPropertyModel.CreatedAtUtc)).AsDateTime()
                     .WithColumn(nameof(CondoPropertyModel.UpdatedAtUtc)).AsDateTime()
@@ -72,7 +75,7 @@ public class InitalMigration : FluentMigrator.Migration {
                 
                 
                 Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(PropertyManagementCompanyModel)))
-                    .WithColumn(nameof(PropertyManagementCompanyModel.Id)).AsGuid().PrimaryKey().Identity()
+                    .WithColumn(nameof(PropertyManagementCompanyModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(PropertyManagementCompanyModel.Name)).AsString()
                     .WithColumn(nameof(PropertyManagementCompanyModel.Dba)).AsString().Nullable()
                     .WithColumn(nameof(PropertyManagementCompanyModel.CreatedAtUtc)).AsDateTime()

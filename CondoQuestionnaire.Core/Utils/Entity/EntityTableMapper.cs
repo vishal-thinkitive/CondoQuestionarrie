@@ -11,7 +11,6 @@ public class EntityToTableNameMapper
         {typeof(ContactMethodModel), "ContactMethods"},
         {typeof(CondoPropertyModel), "CondoProperties"},
         {typeof(PropertyManagementCompanyModel), "PropertyManagementCompanies"},
-        {typeof(ContactMethodModel), "ContactMethods"},
         {typeof(CondoApplicationModel), "CondoApplications"},
         {typeof(PropertyManagerProfileModel), "PropertyManagerProfiles"},
         {typeof(ApplicantProfileModel), "ApplicantProfiles"},
