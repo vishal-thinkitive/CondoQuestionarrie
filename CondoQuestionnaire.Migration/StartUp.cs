@@ -1,4 +1,4 @@
-﻿using CondoQuestionnaire.Migration.Migrations;
+using CondoQuestionnaire.Migration.Migrations;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,26 +6,21 @@ using Microsoft.Extensions.Hosting;
 
 namespace CondoQuestionnaire.Migration;
 
-internal static class Program
+public class StartUp
 {
-    private static void Main(string[] args)
-    {
-        
-        var serviceProvider = CreateServices();
+    private IHostEnvironment _environment;
 
-        // Put the database update into a scope to ensure
-        // that all resources will be disposed.
-        using var scope = serviceProvider.CreateScope();
-        UpdateDatabase(scope.ServiceProvider);
+    public StartUp(IHostEnvironment environment)
+    {
+        _environment = environment;
     }
-
-    private static IConfiguration BuildConfiguration()
+    
+    private IConfiguration BuildConfiguration()
     {
-        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
         var builder = new ConfigurationBuilder()
-            .SetBasePath(Environment.CurrentDirectory)
+            .SetBasePath(_environment.ContentRootPath)
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{environmentName}.json", optional: true)
+            .AddJsonFile($"appsettings.{_environment.EnvironmentName}.json", optional: true)
             .AddEnvironmentVariables();
         
         return builder.Build();
@@ -34,9 +29,10 @@ internal static class Program
     /// <summary>
     /// Configure the dependency injection services
     /// </summary>
-    private static IServiceProvider CreateServices()
+    public IServiceProvider CreateServices()
     {
         var configuration = BuildConfiguration();
+        var services = new ServiceCollection();
         var applicationSettings =
             configuration.GetValue<MigrationApplicationSettings>(nameof(MigrationApplicationSettings));
         
@@ -48,17 +44,5 @@ internal static class Program
                 .ScanIn(typeof(InitalMigration).Assembly).For.Migrations())
             .AddLogging(lb => lb.AddFluentMigratorConsole())
             .BuildServiceProvider(false);
-    }
-
-    /// <summary>
-    /// Update the database
-    /// </summary>
-    private static void UpdateDatabase(IServiceProvider serviceProvider)
-    {
-        // Instantiate the runner
-        var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-
-        // Execute the migrations
-        runner.MigrateUp();
     }
 }
