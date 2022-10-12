@@ -3,16 +3,16 @@ WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["TownhomeQuestionnaire.Migration/TownhomeQuestionnaire.Migration.csproj", "TownhomeQuestionnaire.Migration/"]
-RUN dotnet restore "TownhomeQuestionnaire.Migration/TownhomeQuestionnaire.Migration.csproj"
+COPY ["CondoQuestionnaire.Migration.csproj", "CondoQuestionnaire.Migration/"]
+RUN dotnet restore "CondoQuestionnaire.Migration/CondoQuestionnaire.Migration.csproj"
 COPY . .
 WORKDIR "/src/TownhomeQuestionnaire.Migration"
-RUN dotnet build "TownhomeQuestionnaire.Migration.csproj" -c Release -o /app/build
+RUN dotnet build "CondoQuestionnaire.Migration.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "TownhomeQuestionnaire.Migration.csproj" -c Release -o /app/publish
+RUN dotnet publish "CondoQuestionnaire.Migration.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "TownhomeQuestionnaire.Migration.dll"]
+ENTRYPOINT ["dotnet", "CondoQuestionnaire.Migration.dll"]
