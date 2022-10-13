@@ -21,12 +21,10 @@ services:
   condo-questionnaire-api.migration:
     build:
       context: .
-      dockerfile: ./CondoQuestionnaire.Migration/Dockerfile
-#    image: condo-questionnaire-api/migration
+      dockerfile: CondoQuestionnaire.Migration/Dockerfile
+    image: condo-questionnaire-api/migration
     extra_hosts:
       - 'host.docker.internal:host-gateway'  
-    volumes:
-      - './data/dotnetApps/Api:/app:delegated'
     networks:
       - condo-questionnaire-app
     depends_on:
