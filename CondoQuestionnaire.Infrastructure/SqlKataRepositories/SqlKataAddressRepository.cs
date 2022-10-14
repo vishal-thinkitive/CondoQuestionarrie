@@ -5,7 +5,7 @@ using CondoQuestionnaire.Core.Utils.Entity;
 using CondoQuestionnaire.Shared.Models;
 using SqlKata.Execution;
 
-namespace CondoQuestionnaire.Infrastructure.DapperRepositories;
+namespace CondoQuestionnaire.Infrastructure.SqlKataRepositories;
 
 public class DapperAddressRepository : IAddressRepository
 {

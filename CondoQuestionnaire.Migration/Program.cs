@@ -6,11 +6,10 @@ using Microsoft.Extensions.Hosting;
 
 namespace CondoQuestionnaire.Migration;
 
-class Program
+internal static class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-        
         var serviceProvider = CreateServices();
 
         // Put the database update into a scope to ensure
