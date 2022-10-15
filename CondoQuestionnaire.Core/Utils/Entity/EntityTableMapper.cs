@@ -4,7 +4,7 @@ namespace CondoQuestionnaire.Core.Utils.Entity;
 
 public static class EntityToTableNameMapper
 {
-    private static readonly Dictionary<Type, string> TypesToTables = new Dictionary<Type, string>
+    private static readonly Dictionary<Type, string> TypesToTables = new()
     {
         {typeof(AddressModel), "Addresses"},
         {typeof(ContactModel), "Contacts"},

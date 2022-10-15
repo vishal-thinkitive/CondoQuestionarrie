@@ -39,15 +39,19 @@ public class QuestionType : IEquatable<QuestionType>
         return !Equals(left, right);
     }
 
-    public static QuestionType String => new QuestionType(nameof(String));
-    public static QuestionType Text => new QuestionType(nameof(Text));
-    public static QuestionType Boolean => new QuestionType(nameof(Boolean));
-    public static QuestionType Date => new QuestionType(nameof(Date));
-    public static QuestionType YearOnly => new QuestionType(nameof(YearOnly));
-    public static QuestionType Number => new QuestionType(nameof(Number));
-    public static QuestionType PhoneNumber => new QuestionType(nameof(PhoneNumber));
-    public static QuestionType Address => new QuestionType(nameof(Address));
-    public static QuestionType Email => new QuestionType(nameof(Email));
-    public static QuestionType MultiSelect => new QuestionType(nameof(MultiSelect));
-    public static QuestionType BooleanWithDateOption => new QuestionType(nameof(BooleanWithDateOption));
+    public static QuestionType String => new(nameof(String));
+    public static QuestionType Text => new(nameof(Text));
+    public static QuestionType Boolean => new(nameof(Boolean));
+    public static QuestionType Date => new(nameof(Date));
+    public static QuestionType YearOnly => new(nameof(YearOnly));
+    public static QuestionType Number => new(nameof(Number));
+    public static QuestionType Percentage => new(nameof(Percentage));
+    public static QuestionType PhoneNumber => new(nameof(PhoneNumber));
+    public static QuestionType Address => new(nameof(Address));
+    public static QuestionType Email => new(nameof(Email));
+    public static QuestionType MultiSelect => new(nameof(MultiSelect));
+    public static QuestionType BooleanWithDateOption => new(nameof(BooleanWithDateOption));
+    public static QuestionType Selection => new(nameof(Selection));
+    public static QuestionType Table => new(nameof(Table));
+    public static QuestionType LabelOnly => new(nameof(LabelOnly));
 }
