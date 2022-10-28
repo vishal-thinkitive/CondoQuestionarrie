@@ -54,4 +54,5 @@ public class QuestionType : IEquatable<QuestionType>
     public static QuestionType Selection => new(nameof(Selection));
     public static QuestionType Table => new(nameof(Table));
     public static QuestionType LabelOnly => new(nameof(LabelOnly));
+    public static QuestionType Money = new(nameof(Money));
 }
