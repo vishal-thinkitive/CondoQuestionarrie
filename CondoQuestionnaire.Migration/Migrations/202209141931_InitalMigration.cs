@@ -116,7 +116,6 @@ public class InitalMigration : FluentMigrator.Migration {
                 Create.Table(EntityToTableNameMapper.GetTableForEntityType(typeof(CondoApplicationModel)))
                     .WithColumn(nameof(CondoApplicationModel.Id)).AsGuid().PrimaryKey()
                     .WithColumn(nameof(CondoApplicationModel.Status)).AsString().Indexed("idx_CondoApplications_Status")
-                    .WithColumn(nameof(CondoApplicationModel.CurrentQuestionCode)).AsString().Indexed("idx_CondoApplications_CurrentQuestionCode")
                     .WithColumn(nameof(CondoApplicationModel.ApplicantId)).AsGuid().Nullable()
                         .ForeignKey("fk_ApplicantProfiles_CondoApplications", "ApplicantProfiles", nameof(ApplicantProfileModel.Id))
                     .WithColumn(nameof(CondoApplicationModel.CompletedAtUtc)).AsDateTime().Nullable()

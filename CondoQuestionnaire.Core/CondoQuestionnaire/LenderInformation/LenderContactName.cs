@@ -1,8 +1,0 @@
-namespace CondoQuestionnaire.Core.CondoQuestionnaire.LenderInformation;
-
-public class LenderContactName: IQuestion
-{
-    public QuestionType Type => QuestionType.String;
-    public string Label => "Contact Name";
-    public string Code => "G0:Q2";
-}
