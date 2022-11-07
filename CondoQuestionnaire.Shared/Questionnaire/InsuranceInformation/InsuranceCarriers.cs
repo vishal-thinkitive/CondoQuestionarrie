@@ -9,9 +9,9 @@ public class InsuranceCarriers : ITableQuestion
     public IDictionary<string, QuestionType> TableColumns => new Dictionary<string, QuestionType>
     {
         { "Type of Insurance", QuestionType.LabelOnly },
-        { "Type of Insurance", QuestionType.Text },
-        { "Type of Insurance", QuestionType.PhoneNumber },
-        { "Type of Insurance", QuestionType.Text }
+        { "Carrier/Agent Name", QuestionType.Text },
+        { "Carrier/Agent Phone Number", QuestionType.PhoneNumber },
+        { "Policy Number", QuestionType.Text }
     };
 
     public bool QuestionsHaveLabels => true;

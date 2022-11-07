@@ -11,7 +11,7 @@ namespace CondoQuestionnaire.Shared.Questionnaire;
 
 public class CondoBuildingQuestionProvider
 {
-    private IEnumerable<IQuestionGroup> Groups;
+    public IEnumerable<IQuestionGroup> Groups;
 
     public CondoBuildingQuestionProvider()
     {

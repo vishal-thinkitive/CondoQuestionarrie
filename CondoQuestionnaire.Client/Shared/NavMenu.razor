@@ -1,0 +1,18 @@
+﻿
+<MudNavMenu>
+	<MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Dashboard</MudNavLink>
+	<MudNavLink Href="/questionnaire" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Project Questionnaire</MudNavLink>
+	
+</MudNavMenu>
+
+
+
+@code {
+	bool _open = true;
+
+	void ToggleDrawer()
+	{
+		_open = !_open;
+	}
+	
+}

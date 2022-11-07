@@ -1,0 +1,21 @@
+@using System.ComponentModel.DataAnnotations
+<button class="btn btn-dark-blue btn-lg" type="button" disabled="@(ActiveStepIdx == 0)" @onclick="OnGoBack">
+    &#8249;
+</button>
+<button class="btn btn-dark-blue  btn-lg float-end" type="button" disabled="@(IsLastStep)" @onclick="OnGoNext">
+    &#8250;
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback OnGoBack { get; set; }
+    
+    [Parameter]
+    public EventCallback OnGoNext { get; set; }
+
+    [Parameter, EditorRequired]
+    public int ActiveStepIdx { get; set; }
+
+    [Parameter, EditorRequired]
+    public bool IsLastStep { get; set; }
+}

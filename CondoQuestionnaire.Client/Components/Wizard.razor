@@ -1,0 +1,18 @@
+﻿@inject IUserService UserService
+
+<CascadingValue Value="this">
+    <WizardNavigation ActiveStepIdx="ActiveStepIx" IsLastStep="IsLastStep" OnGoNext="GoNext" OnGoBack="GoBack"></WizardNavigation>
+    <div id="@Id">
+
+        <div id="container-fluid">
+            @ChildContent
+        </div>
+    </div>
+    <br/>
+
+    <WizardNavigation ActiveStepIdx="ActiveStepIx" IsLastStep="IsLastStep" OnGoNext="GoNext" OnGoBack="GoBack"></WizardNavigation>
+
+    <br/>
+    <br/>
+
+</CascadingValue>

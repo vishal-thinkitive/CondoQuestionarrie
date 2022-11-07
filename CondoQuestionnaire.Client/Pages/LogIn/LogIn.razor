@@ -1,0 +1,132 @@
+﻿@page "/login"
+
+@using System.Text.RegularExpressions
+@using Condo_Questionnaire.Client.Models
+@using System.ComponentModel.DataAnnotations
+@inject IUserService UserService
+
+<MudGrid>
+    <MudItem xs="12">
+        @if (IsRegister)
+        {
+            <MudPaper Class="pa-4">
+                <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+                        <MudTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" @bind-Value="UserObj.UserName"/>
+                        <MudTextField T="string" Label="Email" Required="true" RequiredError="Email is required!" @bind-Value="UserObj.Email"
+                                      Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})"/>
+                        <MudTextField T="string" Label="Password" HelperText="Choose a strong password" @ref="pwField1" @bind-Value="UserObj.Password"
+                                      InputType="InputType.Password"
+                                      Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
+                                      RequiredError="Password is required!"/>
+                        <MudTextField T="string"
+                                      Label="Password" HelperText="Repeat the password" InputType="InputType.Password"
+                                      Validation="@(new Func<string, string>(PasswordMatch))"/>
+                        <div class="d-flex align-center justify-space-between">
+                            <MudCheckBox T="bool" Required="true" RequiredError="You must agree" Label="I agree!"  />
+                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="@(()=>RegisterUser())" Class="ml-auto">Register</MudButton>
+                        </div>
+                </MudForm>   
+            </MudPaper>
+        }
+        else
+        {
+            <MudPaper Class="pa-4">
+                <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
+                    <MudTextField T="string" Label="Email" Required="true" RequiredError="Email is required!" @bind-Value="UserObj.Email" />
+                    <MudTextField T="string" Label="Password" HelperText="Enter password" @bind-Value="UserObj.Password"
+                                  InputType="InputType.Password"
+                                  Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
+                                  RequiredError="Password is required!" />
+                    <div class="d-flex align-center justify-space-between">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="@(()=>LogInUser())" Class="ml-auto">LogIn</MudButton>
+                    </div>
+                </MudForm>
+            </MudPaper>
+        }
+        <MudPaper Class="pa-4 mt-4">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" DisableElevation="true" OnClick="@(()=>form.Validate())">Validate</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Secondary" DisableElevation="true" OnClick="@(()=>form.Reset())" Class="mx-2">Reset</MudButton>
+            @if (IsRegister)
+            {
+                <MudButton Variant="Variant.Filled" DisableElevation="true" OnClick="@(()=>ShowLogIn())">Log In</MudButton>
+            }
+            else
+            {
+                <MudButton Variant="Variant.Filled" DisableElevation="true" OnClick="@(()=>ShowRegister())">Register</MudButton>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+@code {
+    bool _drawerOpen = true;
+
+    bool success;
+    string[] errors = { };
+    MudTextField<string> pwField1;
+    User UserObj = new User();
+    MudForm form;
+
+    public bool LoggedIn
+    {
+        get { return UserService.User != null; }
+    }
+    public bool IsRegister
+    {
+        get { return UserService.RegisterUser; }
+    }
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+
+    private async Task LogInUser()
+    {
+        var logInUser = new Condo_Questionnaire.Client.Models.LogIn() 
+        { UserName = UserObj.Email, Password = UserObj.Password, };
+
+        await UserService.LogIn(logInUser);
+    }
+    
+    private async Task RegisterUser()
+    {
+        var registerUser = new Condo_Questionnaire.Client.Models.Register() 
+        { Email = UserObj.Email, Password = UserObj.Password, Name = UserObj.UserName };
+
+        await UserService.Register(registerUser);
+    }
+
+    private void ShowRegister()
+    {
+        UserService.RegisterUser = true;
+    }
+    
+    private void ShowLogIn()
+    {
+        UserService.RegisterUser = false;
+    }
+
+    private IEnumerable<string> PasswordStrength(string pw)
+    {
+        if (string.IsNullOrWhiteSpace(pw))
+        {
+            yield return "Password is required!";
+            yield break;
+        }
+        if (pw.Length < 6)
+            yield return "Password must be at least of length 8";
+        if (!Regex.IsMatch(pw, @"[A-Z]"))
+            yield return "Password must contain at least one capital letter";
+        if (!Regex.IsMatch(pw, @"[a-z]"))
+            yield return "Password must contain at least one lowercase letter";
+        if (!Regex.IsMatch(pw, @"[0-9]"))
+            yield return "Password must contain at least one digit";
+    }
+
+    private string PasswordMatch(string arg)
+    {
+        if (pwField1.Value != arg)
+            return "Passwords don't match";
+        return null;
+    }
+}

@@ -1,0 +1,222 @@
+﻿@page "/questionnaire"
+@using Condo_Questionnaire.Client.Models
+@using System.ComponentModel.DataAnnotations
+@inject IUserService UserService
+
+
+<Wizard Id="ProjectQuestionnaireWizard">
+    @foreach(var page in condoBuildingQuestionProvider.Groups){
+        <WizardStep Name=@(page.Label)>
+            <div id=@String.Format(page.Label)>
+                <MudGrid>
+                    <MudListItem Class="dark-blue-header">
+                        @(page.Label)
+                    </MudListItem>
+                    @foreach(var question in page.Questions){
+                        <MudListItem>
+                            <span> @question.Label </span><br/>
+                            @{
+                                var inputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer(){
+                                    QuestionCode = question.Code,
+                                    QuestionType = question.Type,
+                                };
+                                condoQuestionnaireApplication.Answers.Add(inputCondoQuestionnaireAnswer);
+
+                                switch(question.Type.Value){
+                                    case "String":
+                                    case "Address":
+                                        
+                                        <MudTextField Converter="@StringConverter" 
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) />
+                                    break;
+                                    case "Text":
+
+                                        <MudTextField Variant="Variant.Text" Lines="5"
+                                      @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) />
+                                    break;
+                                    case "Date":
+                                        <MudDatePicker Editable="true" /*Converter="DateConverter" */
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) />
+                                    break;
+                                    case "Email":
+                                        <MudTextField Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})" 
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) 
+                                        Converter="@StringConverter" />
+                                    break;
+                                    case "Number":
+                                        <MudNumericField HideSpinButtons="true" Variant="Variant.Text" Converter="@StringConverter"
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) />
+                                    break;
+                                    case "YearOnly":
+                                        <MudDatePicker OpenTo="OpenTo.Year" FixMonth="@DateTime.Today.Month" FixDay="@DateTime.Today.Day" DateFormat="yyyy"
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data)  />
+                                    break;
+                                    case "Percentage":
+                                        <MudNumericField HideSpinButtons="true" Variant="Variant.Text" Min="0" Max="100" Converter="@StringConverter" 
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) />
+                                    break;
+                                    case "PhoneNumber":
+                                        <MudNumericField HideSpinButtons="true" Variant="Variant.Text" MaxLength="12" Converter="@StringConverter"
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) />
+                                    break;
+                                    case "Money":
+                                        <MudTextField Variant="Variant.Text" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.AttachMoney"
+                                        @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data)  />
+                                    break;
+                                    case "Boolean":
+                                        <MudRadioGroup @bind-SelectedOption=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == question.Code).Data) >
+                                            <MudRadio Option="true" Color="Color.Primary" Dense="true">Yes</MudRadio>
+                                            <MudRadio Option="false" Color="Color.Primary" Dense="false">No</MudRadio>
+                                        </MudRadioGroup>
+                                        //<input type="radio" id=@String.Format("{0}_{1}_yes", page.Label, question.Label) name=@String.Format("{0}_{1}", page.Label, question.Label) value="yes">
+                                        //<label for="yes">Yes</label><br>
+                                        //<input type="radio" id=@String.Format("{0}_{1}_no", page.Label, question.Label) name=@String.Format("{0}_{1}", page.Label, question.Label) value="no">
+                                        //<label for="no">No</label><br>
+                                    break;
+                                    case "MultiSelect":
+                                        @foreach(var subQuestion in question.SubQuestions){
+                                            var subInputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer()
+                                            {
+                                                QuestionCode = subQuestion.Code,
+                                                QuestionType = subQuestion.Type,
+                                            };
+                                            condoQuestionnaireApplication.Answers.Add(subInputCondoQuestionnaireAnswer);
+
+                                            <MudCheckBox Label=@(subQuestion.Label) Converter="BooleanConverter"
+                                            @bind-Checked="@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == subQuestion.Code).Data)" >
+                                            </MudCheckBox>
+                                        }
+                                    break;
+                                    case "BooleanWithDateOption":
+                                        @foreach (var subQuestion in question.SubQuestions)
+                                        {
+                                             var subInputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer()
+                                            {
+                                                QuestionCode = subQuestion.Code,
+                                                QuestionType = subQuestion.Type,
+                                            };
+                                            condoQuestionnaireApplication.Answers.Add(subInputCondoQuestionnaireAnswer);
+
+                                            var subLabel = String.Format("{0}_{1}_{2}", page.Label.Replace(" ", ""), question.Label.Replace(" ", ""), subQuestion.Label.Replace(" ", ""));
+                                            var subValue = subQuestion.Code.Split(':').Last();
+
+                                            <input type="radio" id=@subLabel name=@subLabel value=@(subValue)>
+                                            <label for=@(subValue)>@(subValue)</label><br>
+                                            <MudDatePicker Label=@(subQuestion.Label) Editable="true"
+                                            @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == subQuestion.Code).Data) />
+                                        
+                                        }
+                                       
+                                    break;
+                                    case "Selection":
+                                        @foreach(var subQuestion in question.SubQuestions){
+                                            var subInputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer()
+                                            {
+                                                QuestionCode = question.Code,
+                                                QuestionType = question.Type,
+                                            };
+                                            condoQuestionnaireApplication.Answers.Add(subInputCondoQuestionnaireAnswer);
+                                            var subInputValue = subInputCondoQuestionnaireAnswer.Data;
+                                            var subLabel = String.Format("{0}_{1}_{2}", page.Label.Replace(" ", ""), question.Label.Replace(" ", ""), subQuestion.Label.Replace(" ", ""));
+
+                                            <input type="radio" id=@(subLabel) name=@(subLabel) value=@(subQuestion.Label)>
+                                            <label for=@(subLabel)>@(subQuestion.Label)</label><br>
+                                        
+                                        }
+                                        break;
+                                    case "Table":
+                                        var tableQuestion = question as ITableQuestion;
+                                        <MudTable Items=@(tableQuestion.Labels) Bordered Hover="true" LoadingProgressColor="Color.Info">
+                                            <HeaderContent>
+                                                @foreach (var header in tableQuestion.TableColumns)
+                                                {
+                                                    <MudTh Class="dark-blue-header"> @(header.Key) </MudTh>
+                                                }
+                                            </HeaderContent>
+                                            <RowTemplate>
+                                                <MudTd DataLabel="Label">@context</MudTd>
+                                                @foreach (var column in tableQuestion.TableColumns.Skip(0))
+                                                {
+                                                    var subQuestionCode = String.Format("{0}:{1}:{2}", question.Code, context.Replace(" ", ""), column.Key.Replace(" ", ""));
+                                                    var subInputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer()
+                                                    {
+                                                        QuestionCode = subQuestionCode,
+                                                        QuestionType = column.Value,
+                                                    };
+                                                    condoQuestionnaireApplication.Answers.Append(subInputCondoQuestionnaireAnswer);
+                                                    var subInputValue = subInputCondoQuestionnaireAnswer.Data;
+
+                                                    <MudTd DataLabel=@(column.Key)>
+                                                        <MudTextField @bind-Value=@(condoQuestionnaireApplication.Answers.First(x => x.QuestionCode == subQuestionCode).Data) Converter="StringConverter"/>
+                                                    </MudTd>
+                                                }
+                                            </RowTemplate>
+                                        </MudTable>
+                                    break;
+                                }
+                            }
+                        </MudListItem>
+                    }
+                </MudGrid>
+            </div>
+            @if (condoBuildingQuestionProvider.Groups.Last().Code == page.Code )
+            {
+                <MudButton Variant="Variant.Filled" Class="dark-blue-header" OnClick="@(()=>Submit())">Submit</MudButton>
+            }
+        
+        </WizardStep>
+    }
+</Wizard>
+
+@code {
+
+    Questionnaire Questionnaire = new Questionnaire();
+
+    CondoBuildingQuestionProvider condoBuildingQuestionProvider = new CondoBuildingQuestionProvider();
+
+    CondoQuestionnaireApplication condoQuestionnaireApplication = new CondoQuestionnaireApplication();
+
+    private string _currentState;
+
+    void OnChange(string value, string name)
+    {
+        _currentState = String.Format($"{name} value changed to {value}");
+        this.StateHasChanged();
+    }
+
+    void OnChange(string value)
+    {
+        _currentState = String.Format($"value changed to {value}");
+        this.StateHasChanged();
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    void Submit()
+    {
+        UserService.Submit(Questionnaire);
+    }
+
+
+    Converter<object> StringConverter = new Converter<object>
+    {
+        SetFunc = value => value.ToString(),
+        GetFunc = text => (object)text,
+    };
+
+    MudBlazor.Converter<object, DateTime?> DateConverter = new MudBlazor.Converter<object, DateTime?>
+    {
+        SetFunc = value => Convert.ToDateTime(value),
+        GetFunc = text => (object)text,
+    };
+
+    MudBlazor.Converter<object, bool?> BooleanConverter = new MudBlazor.Converter<object, bool?>
+        {
+            SetFunc = value => (value ?? "").ToString() == "true",
+            GetFunc = text => (object)text,
+        };
+}

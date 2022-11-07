@@ -7,6 +7,7 @@ public class InformationRegardingOwnershipOfUnits : ITableQuestion
     public string Code => "G5:Q1";
     public IDictionary<string, QuestionType> TableColumns { get; } = new Dictionary<string, QuestionType>
     {
+        { "", QuestionType.LabelOnly },
         { "Entire Project", QuestionType.Number },
         { "Subject Legal Phase (in which the unit is located), \nIf Applicable", QuestionType.Text }
     };
