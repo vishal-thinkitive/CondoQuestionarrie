@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CondoQuestionnaire.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CondoQuestionnaire.Infrastructure", "CondoQuestionnaire.Infrastructure\CondoQuestionnaire.Infrastructure.csproj", "{9D3738F7-41A3-4EB0-9BFA-6A764CCFB1C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Condo_Questionnaire.Client", "CondoQuestionnaire.Client\Condo_Questionnaire.Client.csproj", "{5DDA9014-4BFC-4F53-A95F-67485063F6FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CondoQuestionnaire.Client", "CondoQuestionnaire.Client\CondoQuestionnaire.Client.csproj", "{5DDA9014-4BFC-4F53-A95F-67485063F6FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

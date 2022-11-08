@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Condo_Questionnaire.Client;
 using MudBlazor.Services;
 using Condo_Questionnaire.Client.Services;
-using IronPdf;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

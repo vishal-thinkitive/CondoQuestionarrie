@@ -1,0 +1,12 @@
+﻿@using CondoQuestionnaire.Client.Converters
+
+<div>@question.Label</div>
+<MudTextField Converter="@ConverterUtility.StringConverter" @bind-Value=@answer.Data />
+
+@code {
+    [Parameter]
+    public CondoQuestionnaireAnswer answer { get; set; }
+
+    [Parameter]
+    public IQuestion question { get; set; }
+}

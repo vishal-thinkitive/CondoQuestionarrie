@@ -1,0 +1,14 @@
+﻿@using CondoQuestionnaire.Client.Converters
+@using System.ComponentModel.DataAnnotations
+
+<div>@question.Label</div>
+<MudField Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})" 
+    Converter="@ConverterUtility.StringConverter" @bind-Value=@answer.Data />
+
+@code {
+    [Parameter]
+    public CondoQuestionnaireAnswer answer { get; set; }
+
+    [Parameter]
+    public IQuestion question { get; set; }
+}

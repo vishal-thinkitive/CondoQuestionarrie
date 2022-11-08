@@ -1,0 +1,13 @@
+﻿@using CondoQuestionnaire.Client.Converters
+
+<div>@question.Label</div>
+<MudDatePicker OpenTo="OpenTo.Year" FixMonth="@DateTime.Today.Month" FixDay="@DateTime.Today.Day" DateFormat="yyyy" 
+    Converter=@ConverterUtility.DateConverter @bind-Value=@answer.Data />
+
+@code {
+    [Parameter]
+    public CondoQuestionnaireAnswer answer { get; set; }
+
+    [Parameter]
+    public IQuestion question { get; set; }
+}
