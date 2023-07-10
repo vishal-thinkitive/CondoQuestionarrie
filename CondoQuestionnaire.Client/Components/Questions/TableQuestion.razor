@@ -1,0 +1,57 @@
+﻿@using CondoQuestionnaire.Client.Converters
+
+<MudTable Items=@(question.Labels) Bordered Hover="true" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        @foreach (var header in question.TableColumns)
+        {
+            <MudTh Class="dark-blue-header"> @(header.Key) </MudTh>
+        }
+    </HeaderContent>
+    <RowTemplate>
+        @foreach (var column in question.TableColumns)
+        {
+            <MudTd DataLabel=@(column.Key)>
+                @if (column.Value == QuestionType.LabelOnly)
+                {
+                    <LabelOnlyQuestion questionLabel=@context />
+                }
+                else
+                {
+                    var subQuestionCode = String.Format("{0}:{1}:{2}", question.Code, context.Replace(" ", ""), column.Key.Replace(" ", ""));
+                    var subInputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer();
+                    if (answerList.Any(x => x.QuestionCode == subQuestionCode))
+                    {
+                        subInputCondoQuestionnaireAnswer = answerList.FirstOrDefault(x => x.QuestionCode == subQuestionCode);
+                    }
+                    else
+                    {
+                        subInputCondoQuestionnaireAnswer = new CondoQuestionnaireAnswer()
+                            {
+                                QuestionCode = subQuestionCode,
+                                QuestionType = column.Value,
+                            };
+                        answerList.Add(subInputCondoQuestionnaireAnswer);
+                    }
+                    var subInputValue = subInputCondoQuestionnaireAnswer.Data;
+                    <MudTextField @bind-Value=@(answerList.First(x => x.QuestionCode == subQuestionCode).Data) Converter=@ConverterUtility.StringConverter />
+                }
+            </MudTd>
+        }
+    </RowTemplate>
+</MudTable>
+
+@code {
+    [Parameter]
+    public CondoQuestionnaireAnswer answer { get; set; }
+
+    [Parameter]
+    public ITableQuestion question { get; set; }
+
+    [Parameter]
+    public IList<CondoQuestionnaireAnswer> answerList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+    }
+}

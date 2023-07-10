@@ -22,7 +22,7 @@ namespace CondoQuestionnaire.Client.Converters
 
         private static MudBlazor.Converter<object, bool?> booleanConverter = new ()
         {
-            SetFunc = value => (value ?? "").ToString() == "true",
+            SetFunc = value => (value).ToString().ToLowerInvariant() == "true",
             GetFunc = text => (object)text,
         };
 

@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualBasic;
 using System.Net;
-using static Condo_Questionnaire.Client.Models.InsuranceInformationFinancialControls;
+using static CondoQuestionnaire.Client.Models.InsuranceInformationFinancialControls;
 using static MudBlazor.CategoryTypes;
 
-namespace Condo_Questionnaire.Client.Models
+namespace CondoQuestionnaire.Client.Models
 {
     public class Questionnaire
     {

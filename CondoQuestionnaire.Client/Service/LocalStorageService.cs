@@ -2,7 +2,7 @@ using Microsoft.JSInterop;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Condo_Questionnaire.Client.Services
+namespace CondoQuestionnaire.Client.Services
 {
     public interface ILocalStorageService
     {

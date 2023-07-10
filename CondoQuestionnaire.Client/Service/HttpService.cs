@@ -1,7 +1,8 @@
-using Condo_Questionnaire.Client.Helpers;
-using Condo_Questionnaire.Client.Models;
+using CondoQuestionnaire.Client.Helpers;
+using CondoQuestionnaire.Client.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -12,7 +13,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Condo_Questionnaire.Client.Services
+namespace CondoQuestionnaire.Client.Services
 {
     public interface IHttpService
     {
@@ -90,7 +91,10 @@ namespace Condo_Questionnaire.Client.Services
         {
             var request = new HttpRequestMessage(method, uri);
             if (value != null)
-                request.Content = new StringContent(JsonSerializer.Serialize(value), Encoding.UTF8, "application/json");
+            {
+                var stringContent = JsonConvert.SerializeObject(value, Formatting.Indented);
+                request.Content = new StringContent(stringContent, Encoding.UTF8, "application/json");
+            }
             return request;
         }
 

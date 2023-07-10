@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Condo_Questionnaire.Client.Components
+namespace CondoQuestionnaire.Client.Components
 {
     /// <summary>
     /// Wizard Step component

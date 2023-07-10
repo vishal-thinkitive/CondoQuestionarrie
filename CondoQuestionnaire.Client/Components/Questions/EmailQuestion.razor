@@ -2,8 +2,8 @@
 @using System.ComponentModel.DataAnnotations
 
 <div>@question.Label</div>
-<MudField Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})" 
-    Converter="@ConverterUtility.StringConverter" @bind-Value=@answer.Data />
+<MudTextField Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})"
+              Converter="@ConverterUtility.StringConverter" @bind-Value=@answer.Data />
 
 @code {
     [Parameter]
@@ -11,4 +11,24 @@
 
     [Parameter]
     public IQuestion question { get; set; }
+
+    [Parameter]
+    public IList<CondoQuestionnaireAnswer> answerList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (answerList.Any(x => x.QuestionCode == question.Code))
+        {
+            answer = answerList.FirstOrDefault(x => x.QuestionCode == question.Code);
+        }
+        else
+        {
+            answer = new CondoQuestionnaireAnswer()
+                {
+                    QuestionCode = question.Code,
+                    QuestionType = question.Type,
+                };
+            answerList.Add(answer);
+        }
+    }
 }

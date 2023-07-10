@@ -1,7 +1,7 @@
 ﻿@page "/login"
 
 @using System.Text.RegularExpressions
-@using Condo_Questionnaire.Client.Models
+@using CondoQuestionnaire.Client.Models
 @using System.ComponentModel.DataAnnotations
 @inject IUserService UserService
 
@@ -11,21 +11,21 @@
         {
             <MudPaper Class="pa-4">
                 <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
-                        <MudTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" @bind-Value="UserObj.UserName"/>
-                        <MudTextField T="string" Label="Email" Required="true" RequiredError="Email is required!" @bind-Value="UserObj.Email"
-                                      Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})"/>
-                        <MudTextField T="string" Label="Password" HelperText="Choose a strong password" @ref="pwField1" @bind-Value="UserObj.Password"
-                                      InputType="InputType.Password"
-                                      Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
-                                      RequiredError="Password is required!"/>
-                        <MudTextField T="string"
-                                      Label="Password" HelperText="Repeat the password" InputType="InputType.Password"
-                                      Validation="@(new Func<string, string>(PasswordMatch))"/>
-                        <div class="d-flex align-center justify-space-between">
-                            <MudCheckBox T="bool" Required="true" RequiredError="You must agree" Label="I agree!"  />
-                            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="@(()=>RegisterUser())" Class="ml-auto">Register</MudButton>
-                        </div>
-                </MudForm>   
+                    <MudTextField T="string" Label="Username" Required="true" RequiredError="User name is required!" @bind-Value="UserObj.UserName" />
+                    <MudTextField T="string" Label="Email" Required="true" RequiredError="Email is required!" @bind-Value="UserObj.Email"
+                              Validation="@(new EmailAddressAttribute() {ErrorMessage = "The email address is invalid"})" />
+                    <MudTextField T="string" Label="Password" HelperText="Choose a strong password" @ref="pwField1" @bind-Value="UserObj.Password"
+                              InputType="InputType.Password"
+                              Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
+                              RequiredError="Password is required!" />
+                    <MudTextField T="string"
+                              Label="Password" HelperText="Repeat the password" InputType="InputType.Password"
+                              Validation="@(new Func<string, string>(PasswordMatch))" />
+                    <div class="d-flex align-center justify-space-between">
+                        <MudCheckBox T="bool" Required="true" RequiredError="You must agree" Label="I agree!" />
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="@(()=>RegisterUser())" Class="ml-auto">Register</MudButton>
+                    </div>
+                </MudForm>
             </MudPaper>
         }
         else
@@ -34,9 +34,9 @@
                 <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
                     <MudTextField T="string" Label="Email" Required="true" RequiredError="Email is required!" @bind-Value="UserObj.Email" />
                     <MudTextField T="string" Label="Password" HelperText="Enter password" @bind-Value="UserObj.Password"
-                                  InputType="InputType.Password"
-                                  Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
-                                  RequiredError="Password is required!" />
+                              InputType="InputType.Password"
+                              Validation="@(new Func<string, IEnumerable<string>>(PasswordStrength))" Required="true"
+                              RequiredError="Password is required!" />
                     <div class="d-flex align-center justify-space-between">
                         <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="@(()=>LogInUser())" Class="ml-auto">LogIn</MudButton>
                     </div>
@@ -82,16 +82,16 @@
 
     private async Task LogInUser()
     {
-        var logInUser = new Condo_Questionnaire.Client.Models.LogIn() 
-        { UserName = UserObj.Email, Password = UserObj.Password, };
+        var logInUser = new CondoQuestionnaire.Client.Models.LogIn()
+            { UserName = UserObj.Email, Password = UserObj.Password, };
 
         await UserService.LogIn(logInUser);
     }
-    
+
     private async Task RegisterUser()
     {
-        var registerUser = new Condo_Questionnaire.Client.Models.Register() 
-        { Email = UserObj.Email, Password = UserObj.Password, Name = UserObj.UserName };
+        var registerUser = new CondoQuestionnaire.Client.Models.Register()
+            { Email = UserObj.Email, Password = UserObj.Password, Name = UserObj.UserName };
 
         await UserService.Register(registerUser);
     }
@@ -100,7 +100,7 @@
     {
         UserService.RegisterUser = true;
     }
-    
+
     private void ShowLogIn()
     {
         UserService.RegisterUser = false;

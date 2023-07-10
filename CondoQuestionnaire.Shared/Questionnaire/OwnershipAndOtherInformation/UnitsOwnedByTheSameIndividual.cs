@@ -16,5 +16,8 @@ public class UnitsOwnedByTheSameIndividual : ITableQuestion
     };
 
     public bool QuestionsHaveLabels => false;
-    public IEnumerable<string> Labels => Enumerable.Empty<string>();
+    public IEnumerable<string> Labels => new List<string>(){
+        "1",
+        "2",
+        "3"};
 }

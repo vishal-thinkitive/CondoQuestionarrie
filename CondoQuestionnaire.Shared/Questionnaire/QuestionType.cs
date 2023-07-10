@@ -3,8 +3,8 @@ namespace CondoQuestionnaire.Shared.Questionnaire;
 public class QuestionType : IEquatable<QuestionType>
 {
     public string Value { get; }
-
-    private QuestionType(string value)
+    
+    public QuestionType(string value)
     {
         Value = value;
     }

@@ -1,4 +1,4 @@
-﻿namespace Condo_Questionnaire.Client.Models
+﻿namespace CondoQuestionnaire.Client.Models
 {
     public class User
     {
@@ -7,6 +7,8 @@
         public string Email { get; set; }
         public string Password { get; set; }
         public string Token { get; set; }
+        public bool PaymentDone { get; set; } = false;
+
     }
 
     public class LogInRes
@@ -23,6 +25,7 @@
         {
             public string Name { get; set; }
             public string Email { get; set; }
+            public bool PaymentDone { get; set; } = false;
         }
     }
     public class LogIn

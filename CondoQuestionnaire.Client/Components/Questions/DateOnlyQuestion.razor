@@ -1,8 +1,8 @@
 ﻿@using CondoQuestionnaire.Client.Converters
 
 <div>@question.Label</div>
-<MudDatePicker OpenTo="OpenTo.Year" FixMonth="@DateTime.Today.Month" FixDay="@DateTime.Today.Day" DateFormat="yyyy" 
-    Converter=@ConverterUtility.DateConverter @bind-Value=@answer.Data />
+<MudDatePicker OpenTo="OpenTo.Year" FixMonth="@DateTime.Today.Month" FixDay="@DateTime.Today.Day" DateFormat="yyyy"
+               Converter=@ConverterUtility.DateConverter @bind-Value=@answer.Data />
 
 @code {
     [Parameter]
@@ -10,4 +10,24 @@
 
     [Parameter]
     public IQuestion question { get; set; }
+
+    [Parameter]
+    public IList<CondoQuestionnaireAnswer> answerList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (answerList.Any(x => x.QuestionCode == question.Code))
+        {
+            answer = answerList.FirstOrDefault(x => x.QuestionCode == question.Code);
+        }
+        else
+        {
+            answer = new CondoQuestionnaireAnswer()
+                {
+                    QuestionCode = question.Code,
+                    QuestionType = question.Type,
+                };
+            answerList.Add(answer);
+        }
+    }
 }

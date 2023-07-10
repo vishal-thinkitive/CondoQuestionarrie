@@ -1,10 +1,9 @@
-﻿using Condo_Questionnaire.Client.Models;
-using IronPdf;
+﻿using CondoQuestionnaire.Client.Models;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 
-namespace Condo_Questionnaire.Client.Components
+namespace CondoQuestionnaire.Client.Components
 {
     /// <summary>
     /// Wizard Component
@@ -111,25 +110,6 @@ namespace Condo_Questionnaire.Client.Components
                 StateHasChanged();
             }
         }
-
-
-        protected void CreatePDF()
-        {
-            var htmlToPdf = new HtmlToPdf();
-            var file = htmlToPdf.RenderHtmlFileAsPdf("sample.html");
-            var form = file.Form;
-
-            //form.Fields[0].Value = instructions.formDueDate;
-            //form.Fields[1].Value = instructions.lenderName;
-            //form.Fields[2].Value = instructions.lenderPhoneNumber;
-            //form.Fields[3].Value = instructions.contactName;
-            //form.Fields[4].Value = instructions.lenderFaxNumber;
-            //form.Fields[5].Value = instructions.lenderAddress;
-            //form.Fields[6].Value = instructions.lenderAddress;
-
-            file.SaveAs("demores5.pdf");
-        }
-        
 
     }
 }

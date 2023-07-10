@@ -8,5 +8,5 @@ public class CondoQuestionnaireApplication
     public DateTime? FannieMaeLastUpdatedAtUtc { get; set; }
     public DateTime? CompletedAt { get; set; }
     public EntityId? ProjectId { get; set; }
-    public IList<CondoQuestionnaireAnswer> Answers = new List<CondoQuestionnaireAnswer>();
+    public List<CondoQuestionnaireAnswer> Answers = new List<CondoQuestionnaireAnswer>();
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Condo_Questionnaire.Client.Helpers
+namespace CondoQuestionnaire.Client.Helpers
 {
     public class StringConverter : JsonConverter<string>
     {

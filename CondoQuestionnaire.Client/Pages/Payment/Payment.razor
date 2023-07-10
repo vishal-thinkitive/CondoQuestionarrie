@@ -1,0 +1,33 @@
+﻿@inject IUserService UserService
+
+
+<MudPaper Class="pa-4">
+    <MudForm @ref="form" @bind-IsValid="@success" >
+        <MudTextField T="double" Label="payment" Required="true" RequiredError="Please add amount" @bind-Value="PaymentAmount" />
+        <div class="d-flex align-center justify-space-between">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!success)" OnClick="@(()=>MakePayment())" Class="ml-auto">Pay</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(()=>LogOutUser())" Class="ml-auto">Log out</MudButton>
+        </div>
+    </MudForm>
+</MudPaper>
+
+@code {
+    bool success;
+    MudForm form;
+    double PaymentAmount;
+
+    private async Task MakePayment()
+    {
+        
+        await UserService.MakePayment(UserService.User.Email, PaymentAmount);
+    }
+    private async Task LogOutUser()
+    {
+        await UserService.LogOut();
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await UserService.UpdatePayment();
+    }
+}

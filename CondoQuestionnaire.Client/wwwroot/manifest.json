@@ -1,6 +1,6 @@
 {
-  "name": "Condo_Questionnaire",
-  "short_name": "Condo_Questionnaire",
+  "name": "CondoQuestionnaire",
+  "short_name": "CondoQuestionnaire",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
