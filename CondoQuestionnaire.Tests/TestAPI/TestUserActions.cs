@@ -54,7 +54,7 @@ namespace CondoQuestionnaire.Tests.TestAPI
         public async Task GetUserByToken_WithValidToken_ReturnsUser()
         {
             //Arrange
-            httpContext.Request.Headers["Authorization"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdDEyMzRAZ21haWwuY29tIiwiZW1haWwiOiJUZXN0MTIzNEBnbWFpbC5jb20iLCJuYW1laWQiOiIwZGY3M2NlMS1iYzA3LTRiN2EtODgxMi1iOWM2MDJmYWNmNWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiJKdWwgTW9uIDEwIDIwMjMgMTI6MjA6NTcgUE0iLCJuYmYiOjE2ODg5NjgyNTcsImV4cCI6MTY4ODk3MTg1NywiaWF0IjoxNjg4OTY4MjU3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjcxODIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OioifQ.NdJBZehLZUBHevpREfE_FuKROJ1DqwrhCWFHU_cDjME";
+            httpContext.Request.Headers["Authorization"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdDEyMzRAZ21haWwuY29tIiwiZW1haWwiOiJUZXN0MTIzNEBnbWFpbC5jb20iLCJuYW1laWQiOiIzNjI5NzgwNi00MTVhLTRiYTctYmM0OC1iOGJlNWJlZDIzYjQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiJKdWwgRnJpIDE0IDIwMjMgMTg6MjI6MjQgUE0iLCJuYmYiOjE2ODkzMzU1NDQsImV4cCI6MTY4OTMzOTE0NCwiaWF0IjoxNjg5MzM1NTQ0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjcxODIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OioifQ.msO42iuyzD3qef1Gqlohiy3NChTW6lvXvEfHp9TLYRk";
 
             // Act
             var result = await _userController.GetUserByToken();
@@ -84,7 +84,7 @@ namespace CondoQuestionnaire.Tests.TestAPI
         public async Task ShouldGetLoggedInUsers()
         {
             //Arrange
-            httpContext.Request.Headers["Authorization"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdDEyMzRAZ21haWwuY29tIiwiZW1haWwiOiJUZXN0MTIzNEBnbWFpbC5jb20iLCJuYW1laWQiOiIwZGY3M2NlMS1iYzA3LTRiN2EtODgxMi1iOWM2MDJmYWNmNWEiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiJKdWwgTW9uIDEwIDIwMjMgMTI6MjA6NTcgUE0iLCJuYmYiOjE2ODg5NjgyNTcsImV4cCI6MTY4ODk3MTg1NywiaWF0IjoxNjg4OTY4MjU3LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjcxODIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OioifQ.NdJBZehLZUBHevpREfE_FuKROJ1DqwrhCWFHU_cDjME";
+            httpContext.Request.Headers["Authorization"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdDEyMzRAZ21haWwuY29tIiwiZW1haWwiOiJUZXN0MTIzNEBnbWFpbC5jb20iLCJuYW1laWQiOiIzNjI5NzgwNi00MTVhLTRiYTctYmM0OC1iOGJlNWJlZDIzYjQiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL2V4cGlyYXRpb24iOiJKdWwgRnJpIDE0IDIwMjMgMTg6MjI6MjQgUE0iLCJuYmYiOjE2ODkzMzU1NDQsImV4cCI6MTY4OTMzOTE0NCwiaWF0IjoxNjg5MzM1NTQ0LCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjcxODIiLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OioifQ.msO42iuyzD3qef1Gqlohiy3NChTW6lvXvEfHp9TLYRk";
 
             // Act
             var result = await _userController.GetLoggedInUsers() as OkObjectResult;
